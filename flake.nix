@@ -41,6 +41,24 @@
           # tests are not hermetic
           doCheck = false;
         };
+        leptosfmt = rustPlatform.buildRustPackage {
+          name = "leptosfmt";
+          version = "0.18.8";
+          src = pkgs.fetchFromGitHub {
+            owner = "bram209";
+            repo = "leptosfmt";
+            rev = "0.1.18";
+            hash = "sha256-bNfTZgcru7PJR/9AcaOmW0E8QwdiXcuP7MWXcDPXGso=";
+          };
+          cargoSha256 = "sha256-EsOfMA56l1SvAvyGJ3l7XgAg/gyqSllx8onsj0HbbSQ=";
+          buildInputs = [
+          ];
+          nativeBuildInputs = [
+            pkgs.pkg-config
+          ];
+          # tests are not hermetic
+          # doCheck = false;
+        };
 
       in
       rec
@@ -64,6 +82,7 @@
             rust
             pkgs.rust-analyzer
             trunk
+            leptosfmt
           ];
           shellHook = ''
           '';
